@@ -1,19 +1,17 @@
 from enum import Enum
 
-BUST_POINTS = -10
-MAX_SCORE = 180
-
 class GuessResult(Enum):
-    VALID = 1
-    FINISH = 2
+    SCORE = 1
+    CHECK_OUT = 2
     BUST = 3
+    ILLEGAL = 4
 
 class Player:
     def __init__(self, name, round):
         self.name = name
         self.round = round
-        self.points = round.initial_points
-        self.turns = 0
+        self.points = round.config["initial_points"]
+        self.visits = 0
         self.history = []
 
     def guess(self, answer):
@@ -33,13 +31,16 @@ class Player:
 
     def validate_score(self, score):
         new_points = self.points - score
-        
-        if score > MAX_SCORE or new_points < BUST_POINTS:
+        config = self.round.config
+
+        if score > config["max_score"]:
+            return 0, GuessResult.ILLEGAL
+        elif new_points < config["bust_threshold"]:
             return 0, GuessResult.BUST
         elif new_points <= 0:
-            return score, GuessResult.FINISH
+            return score, GuessResult.CHECK_OUT
         else:            
-            return score, GuessResult.VALID
+            return score, GuessResult.SCORE
         
     def is_playing(self):
-        return self == self.round.current_player
+        return self == self.round.current_visitor
