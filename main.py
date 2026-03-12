@@ -1,11 +1,11 @@
-from round import Round
+from darts import Darts
 
-round = Round({
+darts_game = Darts({
     "initial_points": 501,
     "bust_threshold": -10,
-    "max_score": 1000
+    "max_score": 1000,
 })
 
-round.add_player("Alice")
-round.add_player("Bob")
-round.start_game()
+darts_game.add_player("Alice")
+darts_game.add_player("Bob")
+darts_game.start_game()

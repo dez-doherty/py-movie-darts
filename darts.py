@@ -1,22 +1,13 @@
 from types import MappingProxyType
 from player import Player, GuessResult
+from game import Game, GameStatus
 from enum import Enum
 
-class GameStatus(Enum):
-    WAITING = 0
-    IN_PROGRESS = 1
-    FINISHED = 2
-
-BUST_THRESHOLD = -10
-
-class Round:
+class Darts(Game):
     def __init__(self, config):
-        self.players = {}
-        self.current_visitor = None
+        super().__init__(config)
         self.rounds = 0
-        self.config = MappingProxyType(config)
-        self.winner = {"player": None, "points": float("-inf")}
-        self.game_status = GameStatus.WAITING
+        self.current_visitor = None
 
     def set_turn(self, player):
         if self.game_status != GameStatus.IN_PROGRESS: return
@@ -52,9 +43,9 @@ class Round:
 
 
     def start_game(self):
-        if self.game_status != GameStatus.WAITING: return
+        super().start_game()
 
-        while not self.game_status == GameStatus.IN_PROGRESS:
+        while self.game_status == GameStatus.IN_PROGRESS:
             self.rounds += 1
             for _, player in self.players.items():
                 self.set_turn(player)
@@ -66,26 +57,3 @@ class Round:
         winner = self.winner["player"]
         if winner:
             self.declare_winner(winner)
-            print(f"{winner.name} won the game with {winner.points} points ")
-
-    def end_game(self):
-        if self.game_status != GameStatus.FINISHED: return
-        self.game_status = GameStatus.FINISHED
-        print("Game ended")
-        
-
-
-    def set_winner(self, player):
-        self.winner = {"player": player, "points": player.points}
-
-    def declare_winner(self, player):
-        self.set_winner(player)
-        self.end_game()
-
-
-
-    def add_player(self, name):
-        self.players[name] = Player(name, self)
-
-    def get_player(self, name):
-        return self.players[name]
