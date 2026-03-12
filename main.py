@@ -8,4 +8,4 @@ round = Round({
 
 round.add_player("Alice")
 round.add_player("Bob")
-round.start()
+round.start_game()
