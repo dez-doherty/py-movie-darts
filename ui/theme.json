@@ -1,0 +1,53 @@
+{
+  "defaults": {
+    "colours": {
+      "normal_bg": "#1e1e1e",
+      "hovered_bg": "#2a2a2a",
+      "selected_bg": "#3a3a3a",
+      "active_bg": "#2a2a2a",
+      "normal_text": "#ffffff",
+      "hovered_text": "#ffffff",
+      "selected_text": "#ffffff",
+      "active_text": "#ffffff",
+      "normal_border": "#444444",
+      "hovered_border": "#666666",
+      "active_border": "#888888"
+    }
+  },
+  "text_box": {
+    "colours": {
+      "dark_bg": "#1e1e1e",
+      "normal_text": "#cccccc"
+    }
+  },
+  "text_entry_line": {
+    "colours": {
+      "dark_bg": "#2a2a2a",
+      "normal_text": "#ffffff",
+      "normal_border": "#444444",
+      "focused_border": "#888888"
+    }
+  },
+  "drop_down_menu": {
+    "colours": {
+      "normal_bg": "#2a2a2a",
+      "hovered_bg": "#3a3a3a",
+      "normal_text": "#ffffff",
+      "normal_border": "#444444"
+    }
+  },
+  "button": {
+    "colours": {
+      "normal_bg": "#2a2a2a",
+      "hovered_bg": "#3a3a3a",
+      "active_bg": "#444444",
+      "normal_text": "#ffffff",
+      "normal_border": "#444444"
+    }
+  },
+  "label": {
+    "colours": {
+      "normal_text": "#ffffff"
+    }
+  }
+}

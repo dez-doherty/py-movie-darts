@@ -1,11 +1,21 @@
-from darts import Darts
+from fields import *
+from configs.configs import *
+from classes.game import *
 
-darts_game = Darts({
-    "initial_points": 501,
-    "bust_threshold": -10,
-    "max_score": 1000,
-})
+num_players = int(input("Number of players: "))
+players = [Player(input(f"Player {i+1} name: ")) for i in range(num_players)]
 
-darts_game.add_player("Alice")
-darts_game.add_player("Bob")
-darts_game.start_game()
+print("\nAvailable configs:")
+for i, c in enumerate(configs):
+    print(f"{i+1}. {c['stat']} — {c['category']}: {c['option']}")
+
+config_index = int(input("Choose config: ")) - 1
+config = configs[config_index]
+
+category = categories[config["category"]]
+options = category["options"]
+option_names = [o["name"] for o in options]
+cat_option = options[option_names.index(config["option"])]
+
+game = Game(players, config["stat"], cat_option)
+game.run()
