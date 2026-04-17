@@ -6,4 +6,7 @@ venv/
 .env
 .DS_Store
 .vscode/
+build/
+dist/
+*.spec
 *.pyc

@@ -1,7 +1,13 @@
+import os
+import sys
 import pygame
 import pygame_gui
 
 from fields import categories, statistics
+
+def resource_path(relative_path):
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
 from classes.player import Player
 from configs.configs import MAX_BUST
 from ui.setup_screen import SetupScreen
@@ -15,7 +21,7 @@ pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Movie Darts")
 
-manager = pygame_gui.UIManager((WIDTH, HEIGHT), 'ui/theme.json')
+manager = pygame_gui.UIManager((WIDTH, HEIGHT), resource_path('ui/theme.json'))
 
 setup_screen = SetupScreen(manager)
 game_screen = GameScreen(manager)
