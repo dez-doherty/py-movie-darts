@@ -1,6 +1,6 @@
 import requests
 
-API_KEY = "320c530d"
+API_KEY = ""
 
 def get_movie(title):
     response = requests.get(f"http://www.omdbapi.com/?t={title}&apikey={API_KEY}")
