@@ -1,6 +1,14 @@
+import os
 import requests
+from dotenv import load_dotenv
 
+<<<<<<< Updated upstream
 API_KEY = ""
+=======
+load_dotenv()
+
+API_KEY = os.getenv("OMDB_API_KEY")
+>>>>>>> Stashed changes
 
 def get_movie(title):
     response = requests.get(f"http://www.omdbapi.com/?t={title}&apikey={API_KEY}")

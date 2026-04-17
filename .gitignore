@@ -1,1 +1,9 @@
 /ui/__pycache__
+__pycache__/
+.venv/
+venv/
+# Local secret config
+.env
+.DS_Store
+.vscode/
+*.pyc
